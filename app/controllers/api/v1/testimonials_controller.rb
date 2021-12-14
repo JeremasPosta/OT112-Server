@@ -2,6 +2,12 @@ class Api::V1::TestimonialsController < ApplicationController
   before_action :set_testimonial, only: [:update]
   before_action :authorize_request
 
+  def index
+    @page = (params[:page] || 0).to_i
+    @testimonials = Testimonial.limit(10).offset(@page * 10)
+    render json: TestimonialSerializer.new(@testimonials).serializable_hash.to_json
+  end
+
   def create
     @testimonial = Testimonial.new(testimonial_params)
     if admin?(@current_user) && @testimonial.save
@@ -10,7 +16,7 @@ class Api::V1::TestimonialsController < ApplicationController
       render json: @testimonial.errors, status: :unprocessable_entity
     end
   end
-  
+
   def update
     if admin?(@current_user) && @testimonial.update(testimonial_params)
       render json: TestimonialSerializer.new(@testimonial).serializable_hash.to_json, status: :created
@@ -18,7 +24,7 @@ class Api::V1::TestimonialsController < ApplicationController
       render json: @testimonial.errors, status: :unprocessable_entity
     end
   end
-  
+
   def destroy
     if admin?(@current_user)
       begin
@@ -34,7 +40,8 @@ class Api::V1::TestimonialsController < ApplicationController
           },
           status: :ok
       end
-
+    end
+  end
 
   private
 
