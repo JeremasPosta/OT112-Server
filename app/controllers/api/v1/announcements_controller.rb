@@ -1,5 +1,11 @@
 class Api::V1::AnnouncementsController < ApplicationController
   before_action :authorize_request
+  after_action { pagy_headers_merge(@pagy) if @pagy }
+
+  def index
+    @pagy, @announcement = pagy(Announcement.all, items: 10, page: params[:page])
+    render json: @announcement
+  end
 
   def show
     @announcement = Announcement.find(params[:id])
