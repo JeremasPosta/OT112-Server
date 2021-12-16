@@ -46,6 +46,6 @@ class Api::V1::AnnouncementsController < ApplicationController
   end
 
   def announcement_params
-    params.permit(:image, :name, :content, :category_id, :type)
+    params.permit(:image, :name, :content, :category_id, :comm_type)
   end
 end
