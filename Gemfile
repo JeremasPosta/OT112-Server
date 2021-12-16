@@ -14,8 +14,10 @@ gem 'cancancan', '~> 3.3' # https://rubygems.org/gems/cancancan
 gem 'dotenv-rails', '~> 2.7', '>= 2.7.6' # https://rubygems.org/gems/dotenv-rails
 gem 'jsonapi-serializer', '~> 2.2' # https://rubygems.org/gems/jsonapi-serializer
 gem 'jwt', '~> 2.3' # https://rubygems.org/gems/jwt
+gem 'pagy', '~> 5.6'
 gem 'pg', '~> 1.1' # https://rubygems.org/gems/pg
 gem 'puma', '~> 5.0' # https://rubygems.org/gems/puma
+gem 'rails', '~> 6.1.4', '>= 6.1.4.1'
  
 
 
